@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+import { mountRootParcel } from 'single-spa';
+import StudentForm from './StudentForm';
+
+
 
 function App() {
+  const mountStudentForm = () => {
+    const studentFormParcel = mountRootParcel(
+      StudentForm,
+      {
+        domElement: document.getElementById('student-form-container')
+      }
+    );
+    studentFormParcel.mount();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>StudentApp2</h1>
+      <button onClick={mountStudentForm}>Load Student Form</button>
+      <div id="student-form-container"></div>
     </div>
   );
 }
